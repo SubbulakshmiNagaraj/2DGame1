@@ -7,7 +7,10 @@ using TMPro;
 public class PlayerManager : MonoBehaviour
 {
     public static bool isGameOver;
+    
     public GameObject gameOverScreen;
+    public static bool isLevelCompleted;
+    public GameObject levelCompletedScreen;
 
     public GameObject PauseMenuScreen;
     public static Vector2 lastCheckPointPos = new Vector2(-3, 0);
@@ -21,6 +24,8 @@ public class PlayerManager : MonoBehaviour
         numberOfCoins = PlayerPrefs.GetInt("NumberOfCoins", 0);
         isGameOver = false;
         GameObject.FindGameObjectWithTag("Player").transform.position = lastCheckPointPos;
+        isLevelCompleted = false;
+
     }
 
 
@@ -31,6 +36,10 @@ public class PlayerManager : MonoBehaviour
         if(isGameOver)
         {
             gameOverScreen.SetActive(true);
+        }
+        else if(isLevelCompleted)
+            {
+            levelCompletedScreen.SetActive(true);
         }
     }
     public void ReplayLevel()
